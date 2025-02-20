@@ -74,3 +74,11 @@ output "test_username" {
   sensitive = true
   value     = module.aks.username
 }
+
+output "azure_rg_name" {
+  value = azurerm_resource_group.main[0].name
+}
+
+output "aks_cluster_name" {
+  value = module.aks.aks_name
+}

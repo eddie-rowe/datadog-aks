@@ -25,15 +25,16 @@ module "aks" {
     }
   ]
   agents_type          = "VirtualMachineScaleSets"
+  agents_size          = "Standard_D2s_v3"
   azure_policy_enabled = true
   client_id            = var.client_id
   client_secret        = var.client_secret
   confidential_computing = {
     sgx_quote_helper_enabled = true
   }
-  disk_encryption_set_id = azurerm_disk_encryption_set.des.id
+  #disk_encryption_set_id = azurerm_disk_encryption_set.des.id
   enable_auto_scaling    = true
-  enable_host_encryption = true
+  #enable_host_encryption = true
   green_field_application_gateway_for_ingress = {
     name        = "${random_id.prefix.hex}-agw"
     subnet_cidr = "10.52.1.0/24"
@@ -68,7 +69,7 @@ module "aks" {
   network_policy                    = "azure"
   node_os_channel_upgrade           = "NodeImage"
   os_disk_size_gb                   = 60
-  private_cluster_enabled           = true
+  private_cluster_enabled           = false
   rbac_aad                          = true
   rbac_aad_managed                  = true
   role_based_access_control_enabled = true

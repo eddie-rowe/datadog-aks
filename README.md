@@ -19,28 +19,43 @@ You will then create a monitor for this cluster in Terraform.
 - Active Datadog account
 - Terraform v1.10+
 - Azure CLI 2.69.0+
+- kubectl
+- kubelogin
+- helm
 
-## Quick Steps
+## Deploy AKS infrastructure
 
 1. Issue the ```az login``` command to authenticate your Azure account and select your desired subscription.
-2. Verify your Azure account is authenticated with the ```az account list``` command.
-3. Retrieve your Datadog API and APP keys, then enter their respective values in the `credentials.tfvars` file.
-4. 
-2. Issue the ```terraform init``` command from your working directory to download the necessary providers and initialize the backend.
-3. Then, deploy the resources with ```terraform apply```. Confirm the run by entering `yes`.
+2. Verify your Azure account is authenticated with the ```az account list``` command. 
+3. Issue the ```terraform init``` command from your working directory to download the necessary providers and initialize the backend.
+4. Then, deploy the resources with ```terraform apply```. Confirm the run by entering `yes`.
 - `Note: The Terraform deployment could take up to 15 minutes to complete.`
-4. Kubernetes stores cluster connection information in a file called kubeconfig. 
-You can retrieve the Kubernetes configuration settings for your EKS cluster and merge them into 
-your local kubeconfig file by issuing the following command:
+5. Kubernetes stores cluster connection information in a file called `kubeconfig`. 
+You can retrieve the Kubernetes configuration settings for your AKS cluster and merge them into 
+your local `kubeconfig` file by issuing the following command:
 ```az aks get-credentials --resource-group $(terraform output -raw azure_rg_name) --name $(terraform output -raw aks_cluster_name)```
-5. Verify your Kubernetes cluster is active by issuing the following command:
-```this command```
+`Merged "9ffe71e726e0621d-aks" as current context in C:\Users\eddie\.kube\config`
+6. Verify your Kubernetes cluster is active by issuing the following command:
+```kubectl cluster-info```
 `expected output`
-6. 
+ 
 
+## Enable native Azure datadog integration
+
+1. Retrieve your Datadog API and APP keys, then enter their respective values in the `datadog-creds.tfvars` file.
+2. 
+
+
+
+
+## Clean up demo environment
+
+1. Run the ```terraform destroy --auto-approve``` command to clean up all deployed resources.
 
 ## References
 
 - [https://docs.datadoghq.com/getting_started/integrations/terraform/](https://docs.datadoghq.com/getting_started/integrations/terraform/)
 - [https://registry.terraform.io/modules/Azure/aks/azurerm/latest](https://registry.terraform.io/modules/Azure/aks/azurerm/latest)
 - [https://developer.hashicorp.com/terraform/tutorials/use-case/datadog-provider](https://developer.hashicorp.com/terraform/tutorials/use-case/datadog-provider)
+- [https://docs.datadoghq.com/integrations/guide/azure-native-programmatic-management/](https://docs.datadoghq.com/integrations/guide/azure-native-programmatic-management/)
+- [https://www.datadoghq.com/blog/azure-datadog-partnership/#get-started-today](https://www.datadoghq.com/blog/azure-datadog-partnership/#get-started-today)

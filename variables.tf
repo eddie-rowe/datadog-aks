@@ -1,7 +1,11 @@
 variable "client_id" {
+  type    = string
+  default = null
 }
 
 variable "client_secret" {
+  type    = string
+  default = null
 }
 
 variable "create_resource_group" {
@@ -16,7 +20,7 @@ variable "key_vault_firewall_bypass_ip_cidr" {
 }
 
 variable "location" {
-  default = "eastus"
+  default = "centralus"
 }
 
 variable "managed_identity_principal_id" {
