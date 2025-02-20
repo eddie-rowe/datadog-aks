@@ -13,6 +13,9 @@ terraform {
       source  = "hashicorp/random"
       version = "3.3.2"
     }
+    datadog = {
+      source = "DataDog/datadog"
+    }
   }
 }
 
@@ -32,3 +35,9 @@ provider "azurerm" {
 provider "curl" {}
 
 provider "random" {}
+
+# Configure the Datadog provider
+provider "datadog" {
+  api_key = var.datadog_api_key
+  app_key = var.datadog_app_key
+}

@@ -28,3 +28,13 @@ variable "resource_group_name" {
   type    = string
   default = null
 }
+
+variable "datadog_api_key" {
+  type    = string
+  default = null
+}
+
+variable "datadog_app_key" {
+  type    = string
+  default = null
+}
