@@ -1,0 +1,16 @@
+registry: "gcr.io/datadoghq"
+datadog:
+  kubelet:
+    tlsVerify: false
+  apiKeyExistingSecret: "datadog-secret"
+  site: "us5.datadoghq.com"
+  logs:
+    enabled: true
+    containerCollectAll: true
+  securityAgent:
+    runtime:
+      enabled: true
+  serviceMonitoring:
+    enabled: true
+  networkMonitoring:
+    enabled: true

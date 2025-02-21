@@ -39,7 +39,7 @@ module "aks" {
     name        = "${random_id.prefix.hex}-agw"
     subnet_cidr = "10.52.1.0/24"
   }
-  local_account_disabled               = true
+  local_account_disabled               = false
   log_analytics_workspace_enabled      = true
   cluster_log_analytics_workspace_name = random_id.name.hex
   maintenance_window = {

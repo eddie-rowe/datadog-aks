@@ -20,7 +20,11 @@ variable "key_vault_firewall_bypass_ip_cidr" {
 }
 
 variable "location" {
-  default = "centralus"
+  # uscentral does not contain datadog services?
+  # Monitor Name: "example-monitor"): performing MonitorsCreate: unexpected status 400 (400 Bad Request) 
+  # with error: LocationNotAvailableForResourceType: The provided location 'centralus' is not available
+  # for resource type 'Microsoft.Datadog/monitors'. List of available regions for the resource type is 'westus2'.
+  default = "uswest2"
 }
 
 variable "managed_identity_principal_id" {
@@ -35,10 +39,10 @@ variable "resource_group_name" {
 
 variable "datadog_api_key" {
   type    = string
-  default = null
+  default = "null"
 }
 
 variable "datadog_app_key" {
   type    = string
-  default = null
+  default = "null"
 }
